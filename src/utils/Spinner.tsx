@@ -1,18 +1,16 @@
 import React from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import styled from "styled-components";
+import { colors } from "./Colors";
 
 const Spinner = () => {
   return (
     <div>
-      <StyledSpinner></StyledSpinner>;
+      <StyledSpinner color={colors.pink}></StyledSpinner>;
     </div>
   );
 };
 
 export default Spinner;
 
-const StyledSpinner = styled(PacmanLoader)`
-  color: blue;
-  margin-left: 500px;
-`;
+const StyledSpinner = styled(PacmanLoader)``;
