@@ -21,7 +21,11 @@ const Ai = () => {
     <div>
       {isLoading ? (
         <div>
-          <Spinner />
+          <StyledSpinner>
+            <Spinner></Spinner>
+            <br />
+            <Text text={actionsToFetch.toString()}></Text>
+          </StyledSpinner>
         </div>
       ) : (
         <div>
@@ -42,10 +46,6 @@ const Ai = () => {
               Fetch
             </PrimaryButton>
           </div>
-          <StyledSpinner>
-            <Spinner></Spinner>
-            <Text text="df"></Text>
-          </StyledSpinner>
         </div>
       )}
     </div>

@@ -9,9 +9,9 @@ type TextProps = {
 const Text = (props: TextProps) => {
   const labelText = props.text;
   return (
-    <div>
+    <FlexColumnContainer>
       <Textfield>{labelText}</Textfield>
-    </div>
+    </FlexColumnContainer>
   );
 };
 
@@ -23,4 +23,9 @@ const Textfield = styled.div`
   border: 1px solid #d2cfcf;
   padding: 4px 5px;
   margin-bottom: 5px;
+`;
+const FlexColumnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  display: inline-block;
 `;
