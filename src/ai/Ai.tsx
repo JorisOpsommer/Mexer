@@ -5,16 +5,29 @@ import styled from "styled-components";
 import { SecondaryButton, PrimaryButton } from "../utils/Button";
 import Spinner from "../utils/Spinner";
 import Text from "../utils/Text";
+import ApiGetCallAxios from "../api/Apiclient";
+import { IFunding } from "../models";
 
 const Ai = () => {
   const [startDate, setStartDate] = React.useState<any>(new Date());
   const [endDate, setEndDate] = React.useState<any>(new Date());
   let [isLoading, setLoading] = React.useState(false);
   let [actionsToFetch, setActionsToFetch] = React.useState(0);
-  const FetchData = (startDate: Date, endDate: Date) => {
+  const FetchData = async (startDate: Date, endDate: Date) => {
     console.log("fetch data");
     setLoading(true);
     setActionsToFetch(500);
+    let funding: IFunding[] | undefined;
+
+    const res = await ApiGetCallAxios(
+      "/api/v1/funding?symbol=XBT&count=500&reverse=true&startTime=2020-02-14&endTime=2020-02-18"
+    ).then(fund => {
+      console.log(fund);
+      funding = fund;
+    });
+    console.log(res);
+
+    // console.log(funding);
   };
 
   return (
