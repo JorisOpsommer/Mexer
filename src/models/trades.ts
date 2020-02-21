@@ -1,4 +1,4 @@
-export interface ITrades {
+export interface ITrade {
   timestamp?: Date;
   symbol?: string;
   open?: number;

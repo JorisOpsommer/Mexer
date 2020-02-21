@@ -6,7 +6,7 @@ import { SecondaryButton, PrimaryButton } from "../utils/Button";
 import Spinner from "../utils/Spinner";
 import Text from "../utils/Text";
 import ApiGetCallAxios from "../api/Apiclient";
-import { IFunding, ITrades } from "../models";
+import { IFunding, ITrade } from "../models";
 import readableDate from "../utils/readable-date";
 
 const Ai = () => {
@@ -14,10 +14,12 @@ const Ai = () => {
   const [endDate, setEndDate] = React.useState<any>(new Date());
   let [isLoading, setLoading] = React.useState(false);
   let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(0);
+  let [wasAllDataFechted, setWasAllDataFechted] = React.useState(true);
+
   const FetchData = async (startDate: Date, endDate: Date) => {
     setLoading(true);
     let fundings: IFunding[] = [];
-    let trades: ITrades[] = [];
+    let trades: ITrade[] = [];
     setactionsLeftUntilTimeout(29);
     let actionsLeftUntilTime = 29;
     let mexStartIndex = 0;
@@ -37,11 +39,8 @@ const Ai = () => {
       readableEndDate,
       mexStartIndex
     );
-
-    console.log("final result");
-    console.log(fundings);
-    console.log(trades);
     setLoading(false);
+    //multiplay funding to have equal data
   };
 
   const FetchFunding = async (
@@ -72,6 +71,7 @@ const Ai = () => {
       setactionsLeftUntilTimeout(actionsleft);
       actionsleft -= 1;
     }
+    if (actionsleft === 0) setWasAllDataFechted(false);
     return fundings;
   };
 
@@ -80,9 +80,9 @@ const Ai = () => {
     readableStartDate: string,
     readableEndDate: string,
     mexStartIndex: number
-  ): Promise<ITrades[]> => {
+  ): Promise<ITrade[]> => {
     let dataToFetch = true;
-    let trades: ITrades[] = [];
+    let trades: ITrade[] = [];
 
     while (actionsleft > 0 && dataToFetch) {
       let tradingCall = await CallToApi(
@@ -103,6 +103,7 @@ const Ai = () => {
       setactionsLeftUntilTimeout(actionsleft);
       actionsleft -= 1;
     }
+    if (actionsleft === 0) setWasAllDataFechted(false);
     return trades;
   };
 
@@ -163,6 +164,14 @@ const Ai = () => {
                     " actions fetched."
                   }
                 ></Text>
+                {wasAllDataFechted ? (
+                  <></>
+                ) : (
+                  <StyledContent>
+                    <br />
+                    <Text text="Warning not all the data was fetched."></Text>
+                  </StyledContent>
+                )}
               </StyledContent>
             ) : (
               <></>
