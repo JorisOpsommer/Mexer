@@ -15,24 +15,40 @@ const Ai = () => {
   const [startDate, setStartDate] = React.useState<any>(new Date());
   const [endDate, setEndDate] = React.useState<any>(new Date());
   let [isLoading, setLoading] = React.useState(false);
-  let [actionsToFetch, setActionsToFetch] = React.useState(0);
+  let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(0);
   const FetchData = async (startDate: Date, endDate: Date) => {
+    setLoading(true);
     let fundings: IFunding[] = [];
-    let actionsleft = 5;
+    let trades: ITrades[] = [];
+    setactionsLeftUntilTimeout(5);
     let mexStartIndex = 0;
     let readableStartDate = readableDate(startDate);
     let readableEndDate = readableDate(endDate);
-    let dataToFetch = true;
+
+    console.log("actionslefttofetch " + actionsLeftUntilTimeout);
 
     fundings = await FetchFunding(
-      actionsleft,
+      actionsLeftUntilTimeout,
       readableStartDate,
       readableEndDate,
       mexStartIndex
     );
+    console.log(
+      "actionslefttofetch doing trades now: " + actionsLeftUntilTimeout
+    );
+
+    trades = await FetchTrades(
+      actionsLeftUntilTimeout,
+      readableStartDate,
+      readableEndDate,
+      mexStartIndex
+    );
+    console.log("actionslefttofetch " + actionsLeftUntilTimeout);
 
     console.log("final result");
     console.log(fundings);
+    console.log(trades);
+    setLoading(false);
   };
 
   const FetchFunding = async (
@@ -63,6 +79,7 @@ const Ai = () => {
         fundings.push(element);
       });
     }
+    setactionsLeftUntilTimeout(actionsleft);
     return fundings;
   };
 
@@ -94,54 +111,9 @@ const Ai = () => {
         trades.push(element);
       });
     }
+    setactionsLeftUntilTimeout(actionsleft);
     return trades;
   };
-
-  // const FetchFunding = async (
-  //   mexStartIndex: number,
-  //   actionsleft: number,
-  //   readableStartDate: string,
-  //   readableEndDate: string,
-  //   dataToFetch: boolean,
-  //   fundings: IFunding[]
-  // ): Promise<IFunding[] | any> => {
-  //   if (!dataToFetch) {
-  //     return fundings;
-  //   } else {
-  //     setTimeout(async function() {
-  //       while (actionsleft > 0) {
-  //         actionsleft -= 1;
-
-  //         let fundingCall = await CallToApi(
-  //           readableStartDate,
-  //           readableEndDate,
-  //           mexStartIndex.toString(),
-  //           "/api/v1/funding?symbol=XBT&count=500"
-  //         );
-  //         console.log("logging result:");
-
-  //         console.log(fundingCall);
-  //         if (fundingCall.length === 0 || fundingCall.length === undefined) {
-  //           dataToFetch = false;
-  //         }
-  //         fundingCall.forEach(element => {
-  //           fundings.push(element);
-  //         });
-  //         console.log("logging total result");
-  //         console.log(fundings);
-  //       }
-
-  //       FetchFunding(
-  //         mexStartIndex + 500,
-  //         5,
-  //         readableStartDate,
-  //         readableEndDate,
-  //         dataToFetch,
-  //         fundings
-  //       );
-  //     }, 8000);
-  //   }
-  // };
 
   const CallToApi = async (
     readableStartdate: string,
@@ -169,7 +141,7 @@ const Ai = () => {
           <StyledSpinner>
             <Spinner></Spinner>
             <br />
-            <Text text={actionsToFetch.toString()}></Text>
+            <Text text={actionsLeftUntilTimeout.toString()}></Text>
           </StyledSpinner>
         </div>
       ) : (
