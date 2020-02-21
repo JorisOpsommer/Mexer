@@ -7,9 +7,7 @@ import Spinner from "../utils/Spinner";
 import Text from "../utils/Text";
 import ApiGetCallAxios from "../api/Apiclient";
 import { IFunding, ITrades } from "../models";
-import moment from "moment";
 import readableDate from "../utils/readable-date";
-const axios = require("axios");
 
 const Ai = () => {
   const [startDate, setStartDate] = React.useState<any>(new Date());
@@ -20,30 +18,25 @@ const Ai = () => {
     setLoading(true);
     let fundings: IFunding[] = [];
     let trades: ITrades[] = [];
-    setactionsLeftUntilTimeout(5);
+    setactionsLeftUntilTimeout(29);
+    let actionsLeftUntilTime = 29;
     let mexStartIndex = 0;
     let readableStartDate = readableDate(startDate);
     let readableEndDate = readableDate(endDate);
 
-    console.log("actionslefttofetch " + actionsLeftUntilTimeout);
-
     fundings = await FetchFunding(
-      actionsLeftUntilTimeout,
+      actionsLeftUntilTime,
       readableStartDate,
       readableEndDate,
       mexStartIndex
-    );
-    console.log(
-      "actionslefttofetch doing trades now: " + actionsLeftUntilTimeout
     );
 
     trades = await FetchTrades(
-      actionsLeftUntilTimeout,
+      actionsLeftUntilTime - Math.ceil(fundings.length / 500),
       readableStartDate,
       readableEndDate,
       mexStartIndex
     );
-    console.log("actionslefttofetch " + actionsLeftUntilTimeout);
 
     console.log("final result");
     console.log(fundings);
@@ -61,7 +54,6 @@ const Ai = () => {
     let fundings: IFunding[] = [];
 
     while (actionsleft > 0 && dataToFetch) {
-      actionsleft -= 1;
       let fundingCall = await CallToApi(
         readableStartDate,
         readableEndDate,
@@ -70,7 +62,6 @@ const Ai = () => {
       );
       mexStartIndex += 500;
 
-      console.log(fundingCall);
       if (fundingCall.length === 0 || fundingCall.length === undefined) {
         dataToFetch = false;
       }
@@ -78,8 +69,9 @@ const Ai = () => {
       fundingCall.forEach(element => {
         fundings.push(element);
       });
+      setactionsLeftUntilTimeout(actionsleft);
+      actionsleft -= 1;
     }
-    setactionsLeftUntilTimeout(actionsleft);
     return fundings;
   };
 
@@ -93,7 +85,6 @@ const Ai = () => {
     let trades: ITrades[] = [];
 
     while (actionsleft > 0 && dataToFetch) {
-      actionsleft -= 1;
       let tradingCall = await CallToApi(
         readableStartDate,
         readableEndDate,
@@ -102,7 +93,6 @@ const Ai = () => {
       );
       mexStartIndex += 500;
 
-      console.log(tradingCall);
       if (tradingCall.length === 0 || tradingCall.length === undefined) {
         dataToFetch = false;
       }
@@ -110,8 +100,9 @@ const Ai = () => {
       tradingCall.forEach(element => {
         trades.push(element);
       });
+      setactionsLeftUntilTimeout(actionsleft);
+      actionsleft -= 1;
     }
-    setactionsLeftUntilTimeout(actionsleft);
     return trades;
   };
 
@@ -163,6 +154,20 @@ const Ai = () => {
               Fetch
             </PrimaryButton>
           </div>
+          <>
+            {30 - actionsLeftUntilTimeout !== 30 ? (
+              <StyledContent>
+                <Text
+                  text={
+                    (30 - actionsLeftUntilTimeout).toString() +
+                    " actions fetched."
+                  }
+                ></Text>
+              </StyledContent>
+            ) : (
+              <></>
+            )}
+          </>
         </div>
       )}
     </div>
@@ -178,4 +183,8 @@ const PrimaryButtonInput = ({ value, onClick }: any) => {
 const StyledSpinner = styled.div`
   margin-left: 1rem;
   margin-top: 1rem;
+`;
+
+const StyledContent = styled.div`
+  margin-left: 1rem;
 `;
