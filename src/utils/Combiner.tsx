@@ -4,11 +4,6 @@ const Combiner = (
   fundings: IFunding[],
   trades: ITrade[]
 ): IFundingAndTrade[] => {
-  console.log("length of fundings is" + fundings.length);
-  console.log(fundings);
-
-  console.log("length of trades is" + trades.length);
-  console.log(trades);
   let fundingAndTrade: IFundingAndTrade[] = [];
   for (let i = 0; i < fundings.length; i++) {
     let fAT: IFundingAndTrade = {};

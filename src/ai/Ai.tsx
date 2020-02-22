@@ -6,8 +6,10 @@ import { SecondaryButton, PrimaryButton } from "../utils/Button";
 import Spinner from "../utils/Spinner";
 import Text from "../utils/Text";
 import ApiGetCallAxios from "../api/Apiclient";
-import { IFunding, ITrade } from "../models";
+import { IFunding, ITrade, IFundingAndTrade } from "../models";
 import readableDate from "../utils/readable-date";
+import Combiner from "../utils/Combiner";
+import { MultiplierFunding, MultiplierTrades } from "../utils";
 
 const Ai = () => {
   const [startDate, setStartDate] = React.useState<any>(new Date());
@@ -25,7 +27,7 @@ const Ai = () => {
     let mexStartIndex = 0;
     let readableStartDate = readableDate(startDate);
     let readableEndDate = readableDate(endDate);
-
+    let result: IFundingAndTrade[] = [];
     fundings = await FetchFunding(
       actionsLeftUntilTime,
       readableStartDate,
@@ -41,6 +43,10 @@ const Ai = () => {
     );
     setLoading(false);
     //multiplay funding to have equal data
+    fundings = MultiplierFunding("1h", fundings);
+    trades = MultiplierTrades("1h", trades);
+    result = Combiner(fundings, trades);
+    console.log(result);
   };
 
   const FetchFunding = async (
