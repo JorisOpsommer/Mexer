@@ -18,16 +18,18 @@ const Ai = () => {
   );
   const [endDate, setEndDate] = React.useState<any>(new Date());
   let [isLoading, setLoading] = React.useState(false);
-  let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(0);
+  let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(
+    29
+  );
   let [wasAllDataFechted, setWasAllDataFechted] = React.useState(true);
 
-  let [csvData, setCsvData] = React.useState<any>("xd");
+  let [csvData, setCsvData] = React.useState<any>("clearCSV");
 
   const FetchData = async (startDate: Date, endDate: Date) => {
     setLoading(true);
+    setWasAllDataFechted(true);
     let fundings: IFunding[] = [];
     let trades: ITrade[] = [];
-    setactionsLeftUntilTimeout(29);
     let actionsLeftUntilTime = 29;
     let mexStartIndex = 0;
     let readableStartDate = readableDate(startDate);
@@ -52,7 +54,6 @@ const Ai = () => {
     trades = MultiplierTrades("1h", trades);
     result = Combiner(fundings, trades);
     setCsvData(result);
-    console.log(result);
   };
 
   const FetchFunding = async (
@@ -168,7 +169,7 @@ const Ai = () => {
             </PrimaryButton>
           </div>
           <>
-            {30 - actionsLeftUntilTimeout !== 30 ? (
+            {29 - actionsLeftUntilTimeout !== 0 ? (
               <StyledContent>
                 <Text
                   text={

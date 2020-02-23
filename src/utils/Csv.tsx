@@ -5,23 +5,25 @@ import { SecondaryButton, SecondaryButtonNoMargin } from "./Button";
 import { CSVLink, CSVDownload } from "react-csv";
 
 type csvProps = {
-  fundingAndTrade: IFundingAndTrade[];
+  fundingAndTrade: any;
 };
 const Csv = (props: csvProps) => {
   return (
     <div>
-      {console.log("in csv")}
-      <CSVLink
-        data={props.fundingAndTrade}
-        filename={"my-file.csv"}
-        asyncOnClick={true}
-        onClick={(event, done) => {
-          done(); // REQUIRED to invoke the logic of component
-        }}
-      >
-        <br />
-        <SecondaryButtonNoMargin>Download</SecondaryButtonNoMargin>
-      </CSVLink>
+      {props.fundingAndTrade === "clearCSV" ? (
+        <div></div>
+      ) : (
+        <div>
+          <CSVLink
+            data={props.fundingAndTrade}
+            filename={"mexerdata.csv"}
+            asyncOnClick={true}
+          >
+            <br />
+            <SecondaryButtonNoMargin>Download</SecondaryButtonNoMargin>
+          </CSVLink>
+        </div>
+      )}
     </div>
   );
 };
