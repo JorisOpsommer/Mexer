@@ -29,3 +29,6 @@ export const SecondaryButton = styled(Button)`
     background-color: ${colors.navColor};
   }
 `;
+export const SecondaryButtonNoMargin = styled(SecondaryButton)`
+  margin: 0rem;
+`;

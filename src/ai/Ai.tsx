@@ -10,13 +10,18 @@ import { IFunding, ITrade, IFundingAndTrade } from "../models";
 import readableDate from "../utils/readable-date";
 import Combiner from "../utils/Combiner";
 import { MultiplierFunding, MultiplierTrades } from "../utils";
+import Csv from "../utils/Csv";
 
 const Ai = () => {
-  const [startDate, setStartDate] = React.useState<any>(new Date());
+  const [startDate, setStartDate] = React.useState<any>(
+    new Date(new Date().setDate(new Date().getDate() - 30))
+  );
   const [endDate, setEndDate] = React.useState<any>(new Date());
   let [isLoading, setLoading] = React.useState(false);
   let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(0);
   let [wasAllDataFechted, setWasAllDataFechted] = React.useState(true);
+
+  let [csvData, setCsvData] = React.useState<any>("xd");
 
   const FetchData = async (startDate: Date, endDate: Date) => {
     setLoading(true);
@@ -46,6 +51,7 @@ const Ai = () => {
     fundings = MultiplierFunding("1h", fundings);
     trades = MultiplierTrades("1h", trades);
     result = Combiner(fundings, trades);
+    setCsvData(result);
     console.log(result);
   };
 
@@ -178,6 +184,7 @@ const Ai = () => {
                     <Text text="Warning not all the data was fetched."></Text>
                   </StyledContent>
                 )}
+                <Csv fundingAndTrade={csvData!}></Csv>
               </StyledContent>
             ) : (
               <></>
