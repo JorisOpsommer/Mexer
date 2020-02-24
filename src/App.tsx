@@ -6,6 +6,7 @@ import Home from "./home/Home";
 import styled from "styled-components";
 import { colors } from "./utils";
 import Ai from "./ai/Ai";
+import FundingPage from "./funding/Funding-page";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         </nav>
         <Route path="/home">
           <Home></Home>
+        </Route>
+        <Route path="/funding">
+          <FundingPage></FundingPage>
         </Route>
         <Route path="/ai">
           <Ai></Ai>

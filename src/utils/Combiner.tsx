@@ -7,26 +7,27 @@ const Combiner = (
   let fundingAndTrade: IFundingAndTrade[] = [];
   for (let i = 0; i < fundings.length; i++) {
     let fAT: IFundingAndTrade = {};
-    fAT.fundingIntervalFunding = fundings[i].fundingInterval;
+    // fAT.fundingIntervalFunding = fundings[i].fundingInterval;
+    fAT.timestampFunding = fundings[i].timestamp;
+    fAT.timestampTrade = trades[i].timestamp;
     fAT.fundingRateFunding = fundings[i].fundingRate;
     fAT.fundingRateDailyFunding = fundings[i].fundingRateDaily;
-    fAT.symbolFunding = fundings[i].symbol;
-    fAT.timestampFunding = fundings[i].timestamp;
 
-    //trades
-    fAT.closeTrade = trades[i].close;
-    fAT.foreignNotionalTrade = trades[i].foreignNotional;
-    fAT.highTrade = trades[i].high;
-    fAT.homeNotionalTrade = trades[i].homeNotional;
-    fAT.lastSizeTrade = trades[i].lastSize;
-    fAT.lowTrade = trades[i].low;
     fAT.openTrade = trades[i].open;
-    fAT.symbolTrade = trades[i].symbol;
-    fAT.timestampTrade = trades[i].timestamp;
-    fAT.tradesTrade = trades[i].trades;
-    fAT.turnoverTrade = trades[i].turnover;
+    fAT.closeTrade = trades[i].close;
+    fAT.highTrade = trades[i].high;
+    fAT.lowTrade = trades[i].low;
+
     fAT.volumeTrade = trades[i].volume;
+    fAT.tradesTrade = trades[i].trades;
+
     fAT.vwapTrade = trades[i].vwap;
+    fAT.turnoverTrade = trades[i].turnover;
+    fAT.homeNotionalTrade = trades[i].homeNotional;
+    fAT.foreignNotionalTrade = trades[i].foreignNotional;
+    fAT.lastSizeTrade = trades[i].lastSize;
+    fAT.symbolFunding = fundings[i].symbol;
+    fAT.symbolTrade = trades[i].symbol;
 
     //map to 1 object
     fundingAndTrade.push(fAT);

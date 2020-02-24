@@ -1,3 +1,3 @@
-export * from "./funding";
-export * from "./trades";
-export * from "./funding-and-trade";
+export * from "./funding-model";
+export * from "./trades-model";
+export * from "./funding-and-trade-model";

@@ -8,7 +8,6 @@ const NavMenu = () => {
     <div>
       <StyledNavBackground>
         <Link to="/home">
-          {" "}
           <PrimaryButton>home</PrimaryButton>
         </Link>
         <Link to="/funding">
