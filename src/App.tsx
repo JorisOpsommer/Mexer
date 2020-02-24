@@ -15,7 +15,7 @@ function App() {
         <nav>
           <NavMenu></NavMenu>
         </nav>
-        <Route path="/home">
+        <Route exact path="/">
           <Home></Home>
         </Route>
         <Route path="/funding">

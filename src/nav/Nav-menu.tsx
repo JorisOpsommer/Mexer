@@ -7,7 +7,7 @@ const NavMenu = () => {
   return (
     <div>
       <StyledNavBackground>
-        <Link to="/home">
+        <Link to="/">
           <PrimaryButton>home</PrimaryButton>
         </Link>
         <Link to="/funding">
