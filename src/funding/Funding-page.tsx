@@ -17,6 +17,7 @@ import {
   Line
 } from "recharts";
 import Cutter from "../utils/Cutter";
+import moment from "moment";
 
 const FundingPage = () => {
   const [data, setData] = React.useState<IFundingAndTrade[]>();
@@ -129,7 +130,8 @@ const FundingPage = () => {
 
     mexData.forEach(element => {
       let chartData: any = {};
-      chartData.name = element.timestampTrade;
+
+      chartData.name = moment(element.timestampTrade).format("DD/MM");
       chartData.trade = element.openTrade;
       chartData.funding = element.fundingRateFunding;
       chartDataArray.push(chartData);
@@ -162,7 +164,7 @@ const FundingPage = () => {
 
   return (
     <div>
-      <Text text="1 hour graph"></Text>
+      <Text text="8 hour graph"></Text>
       {isLoading ? (
         <div>
           <StyledSpinner>
@@ -186,8 +188,12 @@ const FundingPage = () => {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis yAxisId="trade" />
-            <YAxis yAxisId="funding" orientation="right" />
+            <YAxis yAxisId="trade" domain={["auto", "auto"]} />
+            <YAxis
+              yAxisId="funding"
+              orientation="right"
+              domain={["auto", "auto"]}
+            />
             <Tooltip />
             <Legend />
             <Line
