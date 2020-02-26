@@ -5,7 +5,8 @@ import {
   MultiplierFunding,
   MultiplierTrades,
   CutterMod8,
-  CutterMod8LastIncluded
+  CutterMod8LastIncluded,
+  CutterLast10Percent
 } from "../utils";
 import Combiner from "../utils/Combiner";
 import readableDate from "../utils/readable-date";
@@ -22,9 +23,13 @@ import {
 } from "recharts";
 import moment from "moment";
 import { ApiGetCallAxiosForBitmex } from "../api";
+import FundingChart from "../utils/Charts";
 
 const FundingPage = () => {
-  const [data, setData] = React.useState<IFundingAndTrade[]>();
+  const [dataLongTerm, setDataLongTerm] = React.useState<IFundingAndTrade[]>();
+  const [dataShortTerm, setDataShortTerm] = React.useState<
+    IFundingAndTrade[]
+  >();
   const [startDate, setStartDate] = React.useState<any>(
     new Date(new Date().setDate(new Date().getDate() - 30))
   );
@@ -126,10 +131,12 @@ const FundingPage = () => {
     fundings = MultiplierFunding("1h", fundings);
     trades = MultiplierTrades("1h", trades);
     result = Combiner(fundings, trades);
-    result = CutterMod8(result);
-    ResultToChartData(result);
+    const resultLongTerm = CutterMod8LastIncluded(result);
+    const resultShortTerm = CutterLast10Percent(result);
+    ResultToChartDataLongTerm(resultLongTerm);
+    ResultToChartDataShortTerm(resultShortTerm);
   };
-  const ResultToChartData = (mexData: IFundingAndTrade[]) => {
+  const ResultToChartDataLongTerm = (mexData: IFundingAndTrade[]) => {
     let chartDataArray: any[] = [];
 
     mexData.forEach(element => {
@@ -141,7 +148,21 @@ const FundingPage = () => {
       chartDataArray.push(chartData);
     });
 
-    setData(chartDataArray);
+    setDataLongTerm(chartDataArray);
+  };
+  const ResultToChartDataShortTerm = (mexData: IFundingAndTrade[]) => {
+    let chartDataArray: any[] = [];
+
+    mexData.forEach(element => {
+      let chartData: any = {};
+
+      chartData.name = moment(element.timestampTrade).format("hh:mm");
+      chartData.trade = element.closeTrade;
+      chartData.funding = element.fundingRateFunding;
+      chartDataArray.push(chartData);
+    });
+
+    setDataShortTerm(chartDataArray);
   };
 
   const CallToApiCharts = async (
@@ -168,7 +189,6 @@ const FundingPage = () => {
 
   return (
     <div>
-      <Text text="8 hour graph"></Text>
       {isLoading ? (
         <div>
           <StyledSpinner>
@@ -179,45 +199,10 @@ const FundingPage = () => {
         </div>
       ) : (
         <div>
-          <LineChart
-            width={1500}
-            height={450}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis
-              yAxisId="trade"
-              domain={["auto", "auto"]}
-              orientation="right"
-            />
-            <YAxis
-              yAxisId="funding"
-              orientation="left"
-              domain={["auto", "auto"]}
-            />
-            <Tooltip />
-            <Legend />
-            <Line
-              yAxisId="trade"
-              type="monotone"
-              dataKey="trade"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-            <Line
-              yAxisId="funding"
-              type="monotone"
-              dataKey="funding"
-              stroke="#82ca9d"
-            />
-          </LineChart>
+          <Text text="8 hour graph"></Text>
+          <FundingChart chartData={dataLongTerm}></FundingChart>
+          <Text text="1 hour graph"></Text>
+          <FundingChart chartData={dataShortTerm}></FundingChart>
         </div>
       )}
     </div>
