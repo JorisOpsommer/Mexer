@@ -15,13 +15,13 @@ function App() {
         <nav>
           <NavMenu></NavMenu>
         </nav>
-        <Route exact path="/">
+        <Route exact path="/Mexer/">
           <Home></Home>
         </Route>
-        <Route path="/funding">
+        <Route path="/Mexer/funding">
           <FundingPage></FundingPage>
         </Route>
-        <Route path="/ai">
+        <Route path="/Mexer/ai">
           <Ai></Ai>
         </Route>
       </div>
