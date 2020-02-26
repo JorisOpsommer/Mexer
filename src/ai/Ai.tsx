@@ -156,13 +156,13 @@ const Ai = () => {
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
-            customInput={<PrimaryButtonInput />}
+            customInput={<DatepickerInput />}
             dateFormat="yyyy/MM/dd"
           />
           <DatePicker
             selected={endDate}
             onChange={date => setEndDate(date)}
-            customInput={<PrimaryButtonInput />}
+            customInput={<DatepickerInput />}
             dateFormat="yyyy/MM/dd"
           />
           <div>
@@ -213,3 +213,6 @@ const StyledSpinner = styled.div`
 const StyledContent = styled.div`
   margin-left: 1rem;
 `;
+const DatepickerInput = React.forwardRef(({ ...props }, ref) => (
+  <PrimaryButtonInput {...props} />
+));
