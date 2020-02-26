@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { colors } from "./utils";
 import Ai from "./ai/Ai";
 import FundingPage from "./funding/Funding-page";
+import Oi from "./oi/Oi-page";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/Mexer/funding">
           <FundingPage></FundingPage>
+        </Route>
+        <Route path="/Mexer/oi">
+          <Oi></Oi>
         </Route>
         <Route path="/Mexer/ai">
           <Ai></Ai>

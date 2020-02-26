@@ -10,4 +10,4 @@ export {
   CutterMod8LastIncluded,
   CutterLast10Percent
 } from "./Cutter";
-export * from "./Charts";
+export { FundingChart, OiChart } from "./Charts";

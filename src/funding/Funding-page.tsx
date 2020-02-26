@@ -23,7 +23,7 @@ import {
 } from "recharts";
 import moment from "moment";
 import { ApiGetCallAxiosForBitmex } from "../api";
-import FundingChart from "../utils/Charts";
+import { FundingChart } from "../utils/Charts";
 
 const FundingPage = () => {
   const [dataLongTerm, setDataLongTerm] = React.useState<IFundingAndTrade[]>();

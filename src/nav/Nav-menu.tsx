@@ -13,6 +13,9 @@ const NavMenu = () => {
         <Link to="/Mexer/funding">
           <PrimaryButton>Funding</PrimaryButton>
         </Link>
+        <Link to="/Mexer/oi">
+          <PrimaryButton>oi</PrimaryButton>
+        </Link>
         <Link to="/Mexer/ai">
           <PrimaryButton>AI</PrimaryButton>
         </Link>
