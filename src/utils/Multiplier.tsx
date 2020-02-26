@@ -12,10 +12,6 @@ export const MultiplierFunding = (
         newFundings.push(element);
       }
     });
-    newFundings.pop();
-    newFundings.pop();
-    newFundings.pop();
-    newFundings.pop();
   } else {
     newFundings = fundings;
   }

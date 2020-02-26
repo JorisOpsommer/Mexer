@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import Text from "../utils/Text";
 import { IFundingAndTrade, ITrade, IFunding } from "../models";
-import ApiGetCallAxios from "../api/Apiclient";
-import { MultiplierFunding, MultiplierTrades } from "../utils";
+import {
+  MultiplierFunding,
+  MultiplierTrades,
+  CutterMod8,
+  CutterMod8LastIncluded
+} from "../utils";
 import Combiner from "../utils/Combiner";
 import readableDate from "../utils/readable-date";
 import Spinner from "../utils/Spinner";
@@ -16,15 +20,17 @@ import {
   Legend,
   Line
 } from "recharts";
-import Cutter from "../utils/Cutter";
 import moment from "moment";
+import { ApiGetCallAxiosForBitmex } from "../api";
 
 const FundingPage = () => {
   const [data, setData] = React.useState<IFundingAndTrade[]>();
   const [startDate, setStartDate] = React.useState<any>(
     new Date(new Date().setDate(new Date().getDate() - 30))
   );
-  const [endDate, setEndDate] = React.useState<any>(new Date());
+  const [endDate, setEndDate] = React.useState<any>(
+    new Date(new Date().setDate(new Date().getDate() + 1))
+  );
   let [isLoading, setLoading] = React.useState(true);
   let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(
     29
@@ -120,9 +126,7 @@ const FundingPage = () => {
     fundings = MultiplierFunding("1h", fundings);
     trades = MultiplierTrades("1h", trades);
     result = Combiner(fundings, trades);
-    console.log(result.length);
-    result = Cutter(result);
-    console.log(result.length);
+    result = CutterMod8(result);
     ResultToChartData(result);
   };
   const ResultToChartData = (mexData: IFundingAndTrade[]) => {
@@ -132,7 +136,7 @@ const FundingPage = () => {
       let chartData: any = {};
 
       chartData.name = moment(element.timestampTrade).format("DD/MM");
-      chartData.trade = element.openTrade;
+      chartData.trade = element.closeTrade;
       chartData.funding = element.fundingRateFunding;
       chartDataArray.push(chartData);
     });
@@ -146,7 +150,7 @@ const FundingPage = () => {
     mexStartIndex: string,
     url: string
   ): Promise<IFunding[]> => {
-    return await ApiGetCallAxios(
+    return await ApiGetCallAxiosForBitmex(
       url +
         "&start=" +
         mexStartIndex +
@@ -188,10 +192,14 @@ const FundingPage = () => {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis yAxisId="trade" domain={["auto", "auto"]} />
+            <YAxis
+              yAxisId="trade"
+              domain={["auto", "auto"]}
+              orientation="right"
+            />
             <YAxis
               yAxisId="funding"
-              orientation="right"
+              orientation="left"
               domain={["auto", "auto"]}
             />
             <Tooltip />

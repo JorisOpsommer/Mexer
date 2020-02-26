@@ -5,18 +5,20 @@ import styled from "styled-components";
 import { SecondaryButton, PrimaryButton } from "../utils/Button";
 import Spinner from "../utils/Spinner";
 import Text from "../utils/Text";
-import ApiGetCallAxios from "../api/Apiclient";
 import { IFunding, ITrade, IFundingAndTrade } from "../models";
 import readableDate from "../utils/readable-date";
 import Combiner from "../utils/Combiner";
 import { MultiplierFunding, MultiplierTrades } from "../utils";
 import Csv from "../utils/Csv";
+import { ApiGetCallAxiosForBitmex } from "../api";
 
 const Ai = () => {
   const [startDate, setStartDate] = React.useState<any>(
     new Date(new Date().setDate(new Date().getDate() - 30))
   );
-  const [endDate, setEndDate] = React.useState<any>(new Date());
+  const [endDate, setEndDate] = React.useState<any>(
+    new Date(new Date().setDate(new Date().getDate() + 1))
+  );
   let [isLoading, setLoading] = React.useState(false);
   let [actionsLeftUntilTimeout, setactionsLeftUntilTimeout] = React.useState(
     29
@@ -126,7 +128,7 @@ const Ai = () => {
     mexStartIndex: string,
     url: string
   ): Promise<IFunding[]> => {
-    return await ApiGetCallAxios(
+    return await ApiGetCallAxiosForBitmex(
       url +
         "&start=" +
         mexStartIndex +

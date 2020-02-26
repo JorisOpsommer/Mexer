@@ -1,10 +1,21 @@
 import React from "react";
 const axios = require("axios");
 
-const ApiGetCallAxios = async (url: string): Promise<any> => {
+export const ApiGetCallAxios = async (url: string): Promise<any> => {
   return axios.get(url).then(function(response: any) {
     return response.data;
   });
 };
 
-export default ApiGetCallAxios;
+export const ApiGetCallAxiosForBitmex = async (url: string): Promise<any> => {
+  const baseUrl =
+    "https://backendjoris20200226014040.azurewebsites.net/api/bitmex?url=";
+  const baseBitmexUrl = encodeURIComponent("https://www.bitmex.com");
+  const encodedQueryUrl = encodeURIComponent(url);
+
+  return axios
+    .get(baseUrl + baseBitmexUrl + encodedQueryUrl)
+    .then(function(response: any) {
+      return response.data;
+    });
+};

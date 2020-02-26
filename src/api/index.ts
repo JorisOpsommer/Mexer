@@ -1,1 +1,1 @@
-export * from "./Apiclient";
+export { ApiGetCallAxios, ApiGetCallAxiosForBitmex } from "./Apiclient";

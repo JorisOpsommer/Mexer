@@ -5,4 +5,4 @@ export * from "./readable-date";
 export { MultiplierFunding, MultiplierTrades } from "./Multiplier";
 export * from "./Combiner";
 export * from "./Csv";
-export * from "./Cutter";
+export { CutterMod8, CutterMod8LastIncluded } from "./Cutter";
