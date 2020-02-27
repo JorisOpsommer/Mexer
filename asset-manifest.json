@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Mexer/static/css/main.879ca509.chunk.css",
-    "main.js": "/Mexer/static/js/main.9ef871fa.chunk.js",
-    "main.js.map": "/Mexer/static/js/main.9ef871fa.chunk.js.map",
+    "main.js": "/Mexer/static/js/main.1b3e960a.chunk.js",
+    "main.js.map": "/Mexer/static/js/main.1b3e960a.chunk.js.map",
     "runtime-main.js": "/Mexer/static/js/runtime-main.f9b0ede2.js",
     "runtime-main.js.map": "/Mexer/static/js/runtime-main.f9b0ede2.js.map",
     "static/css/2.b90ce945.chunk.css": "/Mexer/static/css/2.b90ce945.chunk.css",
     "static/js/2.41d7f8ae.chunk.js": "/Mexer/static/js/2.41d7f8ae.chunk.js",
     "static/js/2.41d7f8ae.chunk.js.map": "/Mexer/static/js/2.41d7f8ae.chunk.js.map",
     "index.html": "/Mexer/index.html",
-    "precache-manifest.a278fd1cf942b4ea92bd0f6dc8de45ed.js": "/Mexer/precache-manifest.a278fd1cf942b4ea92bd0f6dc8de45ed.js",
+    "precache-manifest.9c12274af4795f7af9aedaccbcaab76d.js": "/Mexer/precache-manifest.9c12274af4795f7af9aedaccbcaab76d.js",
     "service-worker.js": "/Mexer/service-worker.js",
     "static/css/2.b90ce945.chunk.css.map": "/Mexer/static/css/2.b90ce945.chunk.css.map",
     "static/css/main.879ca509.chunk.css.map": "/Mexer/static/css/main.879ca509.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.b90ce945.chunk.css",
     "static/js/2.41d7f8ae.chunk.js",
     "static/css/main.879ca509.chunk.css",
-    "static/js/main.9ef871fa.chunk.js"
+    "static/js/main.1b3e960a.chunk.js"
   ]
 }
