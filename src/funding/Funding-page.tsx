@@ -143,7 +143,7 @@ const FundingPage = () => {
       let chartData: any = {};
 
       chartData.name = moment(element.timestampTrade).format("DD/MM");
-      chartData.trade = element.closeTrade;
+      chartData.price = element.closeTrade;
       chartData.funding = element.fundingRateFunding;
       chartDataArray.push(chartData);
     });
@@ -157,7 +157,7 @@ const FundingPage = () => {
       let chartData: any = {};
 
       chartData.name = moment(element.timestampTrade).format("hh:mm");
-      chartData.trade = element.closeTrade;
+      chartData.price = element.closeTrade;
       chartData.funding = element.fundingRateFunding;
       chartDataArray.push(chartData);
     });
