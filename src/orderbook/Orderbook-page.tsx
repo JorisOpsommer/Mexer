@@ -43,7 +43,8 @@ const Orderbook = () => {
         res.push(temp);
       }
     });
-    if (side === "Sell") res.reverse();
+    // if (side === "Sell") res.reverse();
+    res.reverse();
     return res;
   };
 

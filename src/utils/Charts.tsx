@@ -115,7 +115,11 @@ export const OrderbookChart = (props: chartPropsOrderbook) => {
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis dataKey="price" />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          formatter={value =>
+            new Intl.NumberFormat("en").format(Number(value) * 10)
+          }
+        />
         <Legend />
         <Area
           type="monotone"
