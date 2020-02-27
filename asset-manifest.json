@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/Mexer/static/css/main.879ca509.chunk.css",
-    "main.js": "/Mexer/static/js/main.c9a144ce.chunk.js",
-    "main.js.map": "/Mexer/static/js/main.c9a144ce.chunk.js.map",
+    "main.js": "/Mexer/static/js/main.9182ac78.chunk.js",
+    "main.js.map": "/Mexer/static/js/main.9182ac78.chunk.js.map",
     "runtime-main.js": "/Mexer/static/js/runtime-main.f9b0ede2.js",
     "runtime-main.js.map": "/Mexer/static/js/runtime-main.f9b0ede2.js.map",
     "static/css/2.b90ce945.chunk.css": "/Mexer/static/css/2.b90ce945.chunk.css",
-    "static/js/2.4bb7dc8c.chunk.js": "/Mexer/static/js/2.4bb7dc8c.chunk.js",
-    "static/js/2.4bb7dc8c.chunk.js.map": "/Mexer/static/js/2.4bb7dc8c.chunk.js.map",
+    "static/js/2.35be7253.chunk.js": "/Mexer/static/js/2.35be7253.chunk.js",
+    "static/js/2.35be7253.chunk.js.map": "/Mexer/static/js/2.35be7253.chunk.js.map",
     "index.html": "/Mexer/index.html",
-    "precache-manifest.d97a1125fbc3068d1f8cff47546122f9.js": "/Mexer/precache-manifest.d97a1125fbc3068d1f8cff47546122f9.js",
+    "precache-manifest.3e77b92adad8457ddcf4c4336dc2572b.js": "/Mexer/precache-manifest.3e77b92adad8457ddcf4c4336dc2572b.js",
     "service-worker.js": "/Mexer/service-worker.js",
     "static/css/2.b90ce945.chunk.css.map": "/Mexer/static/css/2.b90ce945.chunk.css.map",
     "static/css/main.879ca509.chunk.css.map": "/Mexer/static/css/main.879ca509.chunk.css.map",
-    "static/js/2.4bb7dc8c.chunk.js.LICENSE.txt": "/Mexer/static/js/2.4bb7dc8c.chunk.js.LICENSE.txt"
+    "static/js/2.35be7253.chunk.js.LICENSE.txt": "/Mexer/static/js/2.35be7253.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f9b0ede2.js",
     "static/css/2.b90ce945.chunk.css",
-    "static/js/2.4bb7dc8c.chunk.js",
+    "static/js/2.35be7253.chunk.js",
     "static/css/main.879ca509.chunk.css",
-    "static/js/main.c9a144ce.chunk.js"
+    "static/js/main.9182ac78.chunk.js"
   ]
 }
