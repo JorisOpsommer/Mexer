@@ -6,7 +6,11 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  Line
+  Line,
+  AreaChart,
+  Area,
+  ComposedChart,
+  Bar
 } from "recharts";
 import { IFundingAndTrade } from "../models";
 
@@ -16,6 +20,12 @@ type chartPropsFunding = {
 
 type chartPropsOi = {
   chartData: any[] | undefined;
+};
+
+type chartPropsOrderbook = {
+  chartData: any[] | undefined;
+  colorBars: string;
+  colorArea: string;
 };
 export const FundingChart = (props: chartPropsFunding) => {
   return (
@@ -84,6 +94,37 @@ export const OiChart = (props: chartPropsOi) => {
         />
         <Line yAxisId="oi" type="monotone" dataKey="oi" stroke="#82ca9d" />
       </LineChart>
+    </div>
+  );
+};
+
+export const OrderbookChart = (props: chartPropsOrderbook) => {
+  return (
+    <div>
+      <ComposedChart
+        width={1500}
+        height={450}
+        data={props.chartData}
+        margin={{
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 20
+        }}
+      >
+        <CartesianGrid stroke="#f5f5f5" />
+        <XAxis dataKey="price" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area
+          type="monotone"
+          dataKey="total"
+          fill={props.colorArea}
+          stroke={props.colorArea}
+        />
+        <Bar dataKey="size" barSize={20} fill={props.colorBars} />
+      </ComposedChart>
     </div>
   );
 };

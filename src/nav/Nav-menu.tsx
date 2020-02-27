@@ -11,10 +11,13 @@ const NavMenu = () => {
           <PrimaryButton>home</PrimaryButton>
         </Link>
         <Link to="/Mexer/funding">
-          <PrimaryButton>Funding</PrimaryButton>
+          <PrimaryButton>funding</PrimaryButton>
         </Link>
         <Link to="/Mexer/oi">
           <PrimaryButton>oi</PrimaryButton>
+        </Link>
+        <Link to="/Mexer/orderbook">
+          <PrimaryButton>orderbook</PrimaryButton>
         </Link>
         <Link to="/Mexer/ai">
           <PrimaryButton>AI</PrimaryButton>

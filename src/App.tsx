@@ -8,6 +8,7 @@ import { colors } from "./utils";
 import Ai from "./ai/Ai";
 import FundingPage from "./funding/Funding-page";
 import Oi from "./oi/Oi-page";
+import Orderbook from "./orderbook/Orderbook-page";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/Mexer/oi">
           <Oi></Oi>
+        </Route>
+        <Route path="/Mexer/orderbook">
+          <Orderbook></Orderbook>
         </Route>
         <Route path="/Mexer/ai">
           <Ai></Ai>

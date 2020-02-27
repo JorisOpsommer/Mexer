@@ -28,7 +28,7 @@ const Oi = () => {
   const OnIit = async () => {
     let dataShortTerm: any[] = [];
     let dataLongTerm: any[] = [];
-
+    setLoading(true);
     dataShortTerm = await FetchDataShortTerm();
     dataLongTerm = await FetchDataLongTerm();
 
