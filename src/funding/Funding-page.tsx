@@ -199,10 +199,12 @@ const FundingPage = () => {
         </div>
       ) : (
         <div>
-          <Text text="8 hour graph"></Text>
-          <FundingChart chartData={dataLongTerm}></FundingChart>
-          <Text text="1 hour graph"></Text>
-          <FundingChart chartData={dataShortTerm}></FundingChart>
+          <StyledChart>
+            <Text text="8 hour graph"></Text>
+            <FundingChart chartData={dataLongTerm}></FundingChart>
+            <Text text="1 hour graph"></Text>
+            <FundingChart chartData={dataShortTerm}></FundingChart>
+          </StyledChart>
         </div>
       )}
     </div>
@@ -211,6 +213,10 @@ const FundingPage = () => {
 export default FundingPage;
 
 const StyledSpinner = styled.div`
+  margin-left: 1rem;
+  margin-top: 1rem;
+`;
+const StyledChart = styled.div`
   margin-left: 1rem;
   margin-top: 1rem;
 `;
