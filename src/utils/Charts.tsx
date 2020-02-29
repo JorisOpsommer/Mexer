@@ -102,7 +102,7 @@ export const OrderbookChart = (props: chartPropsOrderbook) => {
   return (
     <div>
       <ComposedChart
-        width={1500}
+        width={750}
         height={450}
         data={props.chartData}
         margin={{

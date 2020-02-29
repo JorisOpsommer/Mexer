@@ -26,13 +26,13 @@ const Orderbook = () => {
   };
   const FetchData = async () => {
     return await ApiGetCallAxiosForBitmex(
-      "/api/v1/orderBook/L2?symbol=XBT&depth=200"
+      "/api/v1/orderBook/L2?symbol=XBT&depth=400"
     );
   };
   const DataToChart = (data: any[], side: string) => {
     let res: any[] = [];
     let total: number = 0;
-
+    if (side === "Sell") data.reverse();
     data.forEach(element => {
       if (element.side === side) {
         let temp: any = {};
@@ -43,8 +43,7 @@ const Orderbook = () => {
         res.push(temp);
       }
     });
-    // if (side === "Sell") res.reverse();
-    res.reverse();
+    if (side === "Buy") res.reverse();
     return res;
   };
 
@@ -57,18 +56,18 @@ const Orderbook = () => {
           </StyledSpinner>
         </div>
       ) : (
-        <div>
-          <OrderbookChart
-            chartData={chartdataSells}
-            colorBars={colors.sellBars}
-            colorArea={colors.sellArea}
-          ></OrderbookChart>
+        <StyledChartsNextToEachOther>
           <OrderbookChart
             chartData={chartdataBuys}
             colorBars={colors.buyBars}
             colorArea={colors.buyArea}
           ></OrderbookChart>
-        </div>
+          <OrderbookChart
+            chartData={chartdataSells}
+            colorBars={colors.sellBars}
+            colorArea={colors.sellArea}
+          ></OrderbookChart>
+        </StyledChartsNextToEachOther>
       )}
     </div>
   );
@@ -78,7 +77,6 @@ const StyledSpinner = styled.div`
   margin-left: 1rem;
   margin-top: 1rem;
 `;
-const StyledChart = styled.div`
-  margin-left: 1rem;
-  margin-top: 1rem;
+const StyledChartsNextToEachOther = styled.div`
+  display: flex;
 `;
