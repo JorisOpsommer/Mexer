@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "32f63b51cbfc7841a1374783e512e122",
+    "revision": "a1ec154cbd688a42f8cbef8d49a4f7c2",
     "url": "/Mexer/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mexer/static/css/2.b90ce945.chunk.css"
   },
   {
-    "revision": "9adf7405284e1c787832",
+    "revision": "2c3e34b3c7464bc6bfc6",
     "url": "/Mexer/static/css/main.879ca509.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mexer/static/js/2.41d7f8ae.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9adf7405284e1c787832",
-    "url": "/Mexer/static/js/main.1b3e960a.chunk.js"
+    "revision": "2c3e34b3c7464bc6bfc6",
+    "url": "/Mexer/static/js/main.d2294aa5.chunk.js"
   },
   {
     "revision": "bccd4036df051f8cf281",
